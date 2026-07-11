@@ -1,4 +1,4 @@
-# Security
+# Runbook
 
 ## Purpose
 This document defines the approved baseline for **osb-services-auth**.

@@ -1,36 +1,17 @@
 # osb-services-auth
 
+Production implementation package for the OmSaravanaBhava Learning Ecosystem.
+
+## Status
+- Baseline: Engineering Architecture v1.0
+- Delivery wave: Foundation
+- Repository tier: P0/P1 as defined in the Master Implementation Index
+
 ## Purpose
-Authentication, identity, RBAC, OIDC/OAuth2 and zero trust access.
+This repository contains implementation assets, engineering documentation, automation and operational controls for **osb-services-auth**.
 
-## Repository classification
-- Domain: Security
-- Platform: OmSaravanaBhava Learning Ecosystem
-- Architecture baseline: Enterprise Architecture v1.0
-- Status: Scaffold ready
+## Governance
+All changes require pull-request review. Architectural deviations require an ADR. Secrets must never be committed.
 
-## Responsibilities
-This repository owns its domain-specific implementation, documentation, testing strategy, and operational runbooks.
-
-## Required standards
-This repository must follow `osb-engineering-standards` for:
-
-- Coding
-- API design
-- Security
-- DevSecOps
-- Testing
-- Documentation
-- Monitoring
-- Release governance
-
-## Initial upload checklist
-- [ ] Create GitHub repository named `osb-services-auth`
-- [ ] Upload all files from this folder
-- [ ] Enable branch protection for `main`
-- [ ] Enable GitHub Pages only if this repository is documentation-facing
-- [ ] Enable Dependabot and secret scanning
-- [ ] Assign CODEOWNERS
-
-## Next implementation step
-Review `ARCHITECTURE.md`, then create repository-specific backlog issues from `ROADMAP.md`.
+## Quick start
+Review `ARCHITECTURE.md` or the relevant files under `docs/`, then follow the repository-specific setup instructions.
