@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "roles": {
+    "learner": ["profile:read:self", "content:read", "assessment:attempt"],
+    "guardian": ["profile:read:linked-child", "consent:manage:linked-child", "progress:read:linked-child"],
+    "educator": ["content:read", "assessment:manage:tenant", "progress:read:tenant"],
+    "content_editor": ["content:read", "content:write:tenant", "content:submit:tenant"],
+    "content_reviewer": ["content:read", "content:review:tenant", "content:approve:tenant"],
+    "tenant_admin": ["tenant:read:self", "user:manage:tenant", "role:assign:tenant", "audit:read:tenant"],
+    "security_admin": ["security:read:tenant", "session:revoke:tenant", "audit:read:tenant"],
+    "platform_admin": ["platform:manage", "tenant:manage", "audit:read:platform"]
+  },
+  "separationOfDuties": [
+    ["content_editor", "content_reviewer"],
+    ["tenant_admin", "security_admin"]
+  ],
+  "tenantScopedRoles": ["guardian", "educator", "content_editor", "content_reviewer", "tenant_admin", "security_admin"]
+}
