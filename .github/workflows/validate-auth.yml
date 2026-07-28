@@ -1,0 +1,36 @@
+name: Validate Auth Baseline
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auth-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate policy and RBAC configuration
+        run: python3 scripts/validate_auth_baseline.py
+      - name: Reject committed secrets and private keys
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --exclude-dir=.git --exclude='validate-auth.yml' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|client_secret[[:space:]]*[:=][[:space:]]*[^$<{[:space:]]|password[[:space:]]*[:=][[:space:]]*[^$<{[:space:]])' .; then
+            echo 'Potential secret material detected.' >&2
+            exit 1
+          fi
+      - name: Verify required documentation
+        run: |
+          test -f SECURITY.md
+          test -f docs/THREAT_MODEL.md
+          test -f docs/AUTH_OPERATIONS_RUNBOOK.md
+          test -f docs/adr/0001-token-and-session-security.md
